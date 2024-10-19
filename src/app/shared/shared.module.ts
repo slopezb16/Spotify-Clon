@@ -10,6 +10,7 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
 import { RouterLink } from '@angular/router';
 import { OrderListPipe } from './pipe/order-list.pipe';
 import { ImgBrokenDirective } from './directives/img-broken.directive';
+import { TestPageComponent } from './components/Test/test-page/test-page.component';
 
 // modulo basico sin ruta -- routing
 
@@ -24,6 +25,7 @@ import { ImgBrokenDirective } from './directives/img-broken.directive';
     PlayListBodyComponent,
     OrderListPipe,
     ImgBrokenDirective,
+    TestPageComponent,
   ],
   imports: [CommonModule, RouterLink],
   exports: [

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +14,14 @@ export class LoginPageComponent {
   //cada hijo (Cada imput) es capas de tener su propio estado (Valor y validacion)
   formLogin: FormGroup = new FormGroup({});
 
-  constructor(private authSevice: AuthService) {}
+  //Validar el erro
+  errorSession: boolean = false;
+
+  constructor(
+    private authSevice: AuthService,
+    private cookie: CookieService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -30,6 +39,18 @@ export class LoginPageComponent {
   sendLogin(): void {
     const { email, password } = this.formLogin.value;
     // console.log('Variables', body);
-    this.authSevice.sendCredentials(email, password);
+    this.authSevice.sendCredentials(email, password).subscribe(
+      (response) => {
+        console.log('Sesion Iniciada correctamente', response);
+        const { tokenSession, data } = response;
+        this.cookie.set('token', tokenSession, 4, '/'); //TODO:📌📌📌📌
+        this.router.navigate(['/', 'tracks']);
+      },
+      (err) => {
+        // TODO: Error <400
+        console.log('Error de autentificacion', err);
+        this.errorSession = true;
+      }
+    );
   }
 }

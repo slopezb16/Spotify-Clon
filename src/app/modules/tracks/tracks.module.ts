@@ -8,5 +8,6 @@ import { SharedModule } from '@shared/shared.module';
 @NgModule({
   declarations: [TracksPageComponent],
   imports: [CommonModule, TracksRoutingModule, SharedModule],
+  exports: [TracksPageComponent],
 })
 export class TracksModule {}

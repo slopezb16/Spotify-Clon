@@ -1,17 +1,15 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HistoryRoutingModule } from './history-routing.module';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
-
+import { SearchComponent } from './components/search/search.component';
+import { SharedModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    HistoryPageComponent
-  ],
-  imports: [
-    CommonModule,
-    HistoryRoutingModule
-  ]
+  declarations: [HistoryPageComponent, SearchComponent],
+  imports: [CommonModule, HistoryRoutingModule, SharedModule, FormsModule],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class HistoryModule { }
+export class HistoryModule {}

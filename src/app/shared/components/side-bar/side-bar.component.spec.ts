@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideBarComponent } from './side-bar.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SideBarComponent', () => {
   let component: SideBarComponent;
@@ -8,10 +9,10 @@ describe('SideBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SideBarComponent]
-    })
-    .compileComponents();
-    
+      imports: [RouterTestingModule],
+      declarations: [SideBarComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SideBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

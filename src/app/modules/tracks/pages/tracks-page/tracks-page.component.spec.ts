@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TracksPageComponent } from './tracks-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TracksModule } from '@modules/tracks/tracks.module';
 
 describe('TracksPageComponent', () => {
   let component: TracksPageComponent;
@@ -8,10 +10,10 @@ describe('TracksPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TracksPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [HttpClientTestingModule, TracksModule],
+      declarations: [TracksPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TracksPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

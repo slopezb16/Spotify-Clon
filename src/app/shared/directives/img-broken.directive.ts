@@ -5,6 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class ImgBrokenDirective {
   @Input() customImg: string = '';
+  // @Input() customImg: string | boolean = false;
   //TODO: hot HOST HOOST
   @HostListener('error') handleError(): void {
     const elNative = this.elHost.nativeElement;
@@ -13,7 +14,19 @@ export class ImgBrokenDirective {
       console.log('Esta Imagen Revento -->', this.elHost);
       // elNative.src = 'https://picsum.photos/200/200';
       // elNative.src = '../../../assets/images/imgerror.jpg';
-      elNative.src = this.customImg;
+      // if (this.customImg) {
+      //   elNative.src = this.customImg;
+      // } else {
+      //   elNative.src = 'this.customImg';
+      // }
+      // Si customImg tiene un valor (no es una cadena vacía), se usa ese valor
+      if (this.customImg && typeof this.customImg === 'string') {
+        elNative.src = this.customImg;
+      } else {
+        // Imagen de respaldo si customImg es vacío
+        // elNative.src = '../../../assets/images/imgerror.jpg';
+        elNative.src = '';
+      }
     } else {
       console.error('El elemento no es una imagen:', this.elHost);
     }

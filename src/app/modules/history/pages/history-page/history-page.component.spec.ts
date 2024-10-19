@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryPageComponent } from './history-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HistoryModule } from '@modules/history/history.module';
 
 describe('HistoryPageComponent', () => {
   let component: HistoryPageComponent;
@@ -8,10 +10,10 @@ describe('HistoryPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HistoryPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [HttpClientTestingModule, HistoryModule],
+      declarations: [HistoryPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HistoryPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
