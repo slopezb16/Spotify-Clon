@@ -4,10 +4,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ingectSessionInterceptor } from '@core/interceptors/ingect-session.interceptor';
+// import { RegisterPageComponent } from './register-page/register-page.component'; //TODO No hay necesidad de declararlo RegisterPageComponent dado que ya es un standalone
 
 @NgModule({
   declarations: [
     //TODO: Declaraciones, componentes, directivas, pipes
+    // RegisterPageComponent, //TODO No hay necesidad de declararlo RegisterPageComponent dado que ya es un standalone
   ],
   imports: [
     //TODO: Solo se importan otros modules
