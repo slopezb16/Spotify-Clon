@@ -6,12 +6,10 @@ import { HistoryPageComponent } from './pages/history-page/history-page.componen
 
 
 @NgModule({
-  declarations: [
-    HistoryPageComponent
-  ],
-  imports: [
-    CommonModule,
-    HistoryRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        HistoryRoutingModule,
+        HistoryPageComponent
+    ]
 })
 export class HistoryModule { }

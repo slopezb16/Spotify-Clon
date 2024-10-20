@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css',
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css',
+    standalone: true,
+    imports: [ReactiveFormsModule],
 })
 export class LoginPageComponent {
   //Analisa los hijos que estan en el fromGrups o de la etiqueta form con su respectiva clase

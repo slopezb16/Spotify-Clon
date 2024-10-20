@@ -3,11 +3,14 @@ import { TrackModel } from '@core/models/tracks.model';
 import * as dataRaw from '../../../../data/track.json';
 import { TrackService } from '@modules/tracks/services/track.service';
 import { Subscription } from 'rxjs';
+import { SectionGenericComponent } from '../../../../shared/components/section-generic/section-generic.component';
 
 @Component({
-  selector: 'app-tracks-page',
-  templateUrl: './tracks-page.component.html',
-  styleUrl: './tracks-page.component.css',
+    selector: 'app-tracks-page',
+    templateUrl: './tracks-page.component.html',
+    styleUrl: './tracks-page.component.css',
+    standalone: true,
+    imports: [SectionGenericComponent],
 })
 export class TracksPageComponent implements OnInit, OnDestroy {
   tracksTrending: Array<TrackModel> = [];
