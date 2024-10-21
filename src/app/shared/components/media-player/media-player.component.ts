@@ -7,12 +7,20 @@ import {
 } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { MultimediaService } from '@shared/services/multimedia.service';
-import { Subscription } from 'rxjs'; //TODO: Programacion Reactiva
+import { Subscription } from 'rxjs';
+import { NgTemplateOutlet, NgIf, NgClass, AsyncPipe } from '@angular/common'; //TODO: Programacion Reactiva
 
 @Component({
-  selector: 'app-media-player',
-  templateUrl: './media-player.component.html',
-  styleUrl: './media-player.component.css',
+    selector: 'app-media-player',
+    templateUrl: './media-player.component.html',
+    styleUrl: './media-player.component.css',
+    standalone: true,
+    imports: [
+        NgTemplateOutlet,
+        NgIf,
+        NgClass,
+        AsyncPipe,
+    ],
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy {
   // mockCover: TrackModel = {

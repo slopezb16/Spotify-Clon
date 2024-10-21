@@ -1,9 +1,19 @@
 import { Component } from '@angular/core';
+import { UpperCasePipe, LowerCasePipe, JsonPipe, DecimalPipe, CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-test-page',
-  templateUrl: './test-page.component.html',
-  styleUrl: './test-page.component.css',
+    selector: 'app-test-page',
+    templateUrl: './test-page.component.html',
+    styleUrl: './test-page.component.css',
+    standalone: true,
+    imports: [
+        UpperCasePipe,
+        LowerCasePipe,
+        JsonPipe,
+        DecimalPipe,
+        CurrencyPipe,
+        DatePipe,
+    ],
 })
 export class TestPageComponent {
   data: any[] = [];

@@ -9,12 +9,10 @@ describe('PlayListBodyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        PlayListBodyComponent,
+    imports: [PlayListBodyComponent,
         OrderListPipe,
-        PlayListBodyComponent,
-      ],
-    }).compileComponents();
+        PlayListBodyComponent,],
+}).compileComponents();
 
     fixture = TestBed.createComponent(PlayListBodyComponent);
     component = fixture.componentInstance;

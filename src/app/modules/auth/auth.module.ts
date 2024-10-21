@@ -7,7 +7,6 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 // import { RegisterPageComponent } from './pages/login-page/register-page/register-page.component'; //TODO No hay necesidad de declararlo RegisterPageComponent dado que ya es un standalone
 
 @NgModule({
-  declarations: [LoginPageComponent], //TODO No hay necesidad de declararlo RegisterPageComponent dado que ya es un standalone
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+    imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, LoginPageComponent],
 })
 export class AuthModule {}

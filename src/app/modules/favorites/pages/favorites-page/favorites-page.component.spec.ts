@@ -10,9 +10,8 @@ describe('FavoritesPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FavoritesModule],
-      declarations: [FavoritesPageComponent, PlayListHeaderComponent], // Declara `PlayListHeaderComponent`
-    }).compileComponents();
+    imports: [HttpClientTestingModule, FavoritesModule, FavoritesPageComponent, PlayListHeaderComponent],
+}).compileComponents();
 
     fixture = TestBed.createComponent(FavoritesPageComponent);
     component = fixture.componentInstance;

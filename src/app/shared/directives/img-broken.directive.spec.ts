@@ -5,7 +5,8 @@ import { By } from '@angular/platform-browser';
 
 //TODO Componente de Prueba
 @Component({
-  template: '<img class="testing-directiva" appImgBroken [src]="srcMock">',
+    template: '<img class="testing-directiva" appImgBroken [src]="srcMock">',
+    standalone: true,
 })
 class testComponent {
   public srcMock: any = null;
@@ -21,8 +22,8 @@ describe('ImgBrokenDirective', () => {
   //TODO COnfiguracion Previa
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ImgBrokenDirective, testComponent],
-    });
+    imports: [ImgBrokenDirective, testComponent],
+});
 
     //TODO Crea el componente
     fixture = TestBed.createComponent(testComponent);

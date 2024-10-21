@@ -10,9 +10,8 @@ describe('TracksPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, TracksModule],
-      declarations: [TracksPageComponent],
-    }).compileComponents();
+    imports: [HttpClientTestingModule, TracksModule, TracksPageComponent],
+}).compileComponents();
 
     fixture = TestBed.createComponent(TracksPageComponent);
     component = fixture.componentInstance;
