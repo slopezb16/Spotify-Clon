@@ -16,28 +16,44 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
   HTTP_INTERCEPTORS,
+  withInterceptors,
 } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ingectSessionInterceptor } from '@core/interceptors/ingect-session.interceptor';
 import { appConfig } from './app/app.config';
+import { authorizationInterceptor } from '@core/interceptors/session.interceptor';
 
 if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, appConfig).catch((err) =>
-  console.error(err)
-);
+// bootstrapApplication(AppComponent, appConfig).catch((err) =>
+//   console.error(err)
+// );
 
-// bootstrapApplication(AppComponent, appConfig, {
+// bootstrapApplication(AppComponent, {
 //   providers: [
 //     importProvidersFrom(BrowserModule), // Asegúrate de que esto esté bien configurado
 //     CookieService,
-//     {
-//       provide: HTTP_INTERCEPTORS,
-//       useClass: ingectSessionInterceptor, // Cambiado a useClass
-//       multi: true,
-//     },
-//     provideHttpClient(withInterceptorsFromDi()),
+//     //TODO Forma vieja
+//     // {
+//     //   provide: HTTP_INTERCEPTORS,
+//     //   useClass: InjectSessionInterceptor, // Cambiado a useClass
+//     //   multi: true,
+//     // },
+//     // provideHttpClient(withInterceptorsFromDi()),
+//     //TODO Forma nueva
+//     provideHttpClient(withInterceptors([authorizationInterceptor])),
 //   ],
 // }).catch((err) => console.error(err));
+
+// TODO Funcional
+bootstrapApplication(AppComponent, {
+  ...appConfig, // Mantener la configuración existente de `appConfig`
+  providers: [
+    ...appConfig.providers, // Incluir los proveedores ya definidos en `appConfig`
+    importProvidersFrom(BrowserModule), // Importar BrowserModule
+    CookieService, // Proveer el servicio de cookies
+    provideHttpClient(withInterceptors([authorizationInterceptor])), // Proveer interceptor con HttpClient
+  ],
+}).catch((err) => console.error(err));

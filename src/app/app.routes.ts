@@ -16,5 +16,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
     canActivate: [sessionGuard], //TODO: por defecto le da permisos a todos de pasar
+    // canActivate: [() => true], //TODO: deja pasar todo
+    // canActivate: [() => false], //TODO: Pantalla negra
   },
 ];
