@@ -22,6 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ingectSessionInterceptor } from '@core/interceptors/ingect-session.interceptor';
 import { appConfig } from './app/app.config';
 import { authorizationInterceptor } from '@core/interceptors/session.interceptor';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 if (environment.production) {
   enableProdMode();
@@ -57,3 +58,12 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(withInterceptors([authorizationInterceptor])), // Proveer interceptor con HttpClient
   ],
 }).catch((err) => console.error(err));
+
+// bootstrapApplication (AppComponent, {
+// providers: [
+//  provideRouter(appRoutes, withComponentInputBinding()),
+// importProvidersFrom (BrowserModule),
+// CookieService,
+// provideHttpClient (with Interceptors ([authorization Interceptor])),
+// ],
+// }).catch((err) => console.error(err));

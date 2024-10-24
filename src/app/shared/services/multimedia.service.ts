@@ -1,4 +1,10 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import {
+  effect,
+  EventEmitter,
+  Injectable,
+  Signal,
+  signal,
+} from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 
@@ -15,16 +21,25 @@ export class MultimediaService {
   //Ejemplo 3
   // myObservable1$: BehaviorSubject<any> = new BehaviorSubject('agua');
 
+  //TODO primero que vmamos a cambiar
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined);
+  //TODO Siganl
+  public trackInfoSignal = signal<TrackModel | undefined>(undefined); // Inicializar con undefined
 
   // public audio!: HTMLAudioElement; // TODO Audio
   public audio: HTMLAudioElement = new Audio(); // TODO Inicializar audio
-  public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00');
-  public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject(
-    '-00:00'
-  );
-  public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused');
-  public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0);
+
+  // public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00');
+  // public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject(
+  //   '-00:00'
+  // );
+  // public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused');
+  // public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0);
+  //TODO Siganl
+  public timeElapsedSignal = signal<string>('00:00'); // Inicializar con undefined
+  public timeRemainingSignal = signal<string>('-00:00');
+  public playerStatusSignal = signal<string>('paused'); // Inicializar con undefined
+  public playerPercentageSignal = signal<number>(0); // Inicializar con undefined
 
   constructor() {
     // this.myObservable1$ = new Observable((observer: Observer<any>) => {
@@ -41,11 +56,19 @@ export class MultimediaService {
     // this.myObservable1$.next('Next ‼️');
 
     //Musica
-    this.trackInfo$.subscribe((responseOK) => {
-      // console.log('Captura Cancion', responseOk);
-      if (responseOK) {
-        this.setAudio(responseOK);
-      }
+    //TODO esto cambia debido al Signal
+    // this.trackInfo$.subscribe((responseOK) => {
+    //   // console.log('Captura Cancion', responseOk);
+    //   if (responseOK) {
+    //     this.setAudio(responseOK);
+    //   }
+    // });
+
+    //TODO signal
+    effect(() => {
+      const dataInfo = this.trackInfoSignal();
+      console.log('desde siganl como si fuera una subscripcion: ', dataInfo);
+      if (dataInfo) this.setAudio(dataInfo);
     });
 
     this.listenAllEvents();
@@ -76,7 +99,9 @@ export class MultimediaService {
     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
     const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const displayFormat = `${displayMinutes}:${displaySeconds}`;
-    this.timeElapsed$.next(displayFormat);
+    // this.timeElapsed$.next(displayFormat);
+    //TODO signal
+    this.timeElapsedSignal.set(displayFormat);
   }
 
   private setRemaining(currentTime: number, duration: number): void {
@@ -86,7 +111,9 @@ export class MultimediaService {
     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
     const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const displayFormat = `-${displayMinutes}:${displaySeconds}`;
-    this.timeRemaining$.next(displayFormat);
+    // this.timeRemaining$.next(displayFormat);
+    //TODO signal
+    this.timeRemainingSignal.set(displayFormat);
   }
 
   //TODO: Pausar y despausar
@@ -94,17 +121,30 @@ export class MultimediaService {
     switch (
       state.type //TODO: --> playing
     ) {
+      // case 'play':
+      //   this.playerStatus$.next('play');
+      //   break;
+      // case 'playing':
+      //   this.playerStatus$.next('playing');
+      //   break;
+      // case 'ended':
+      //   this.playerStatus$.next('ended');
+      //   break;
+      // default:
+      //   this.playerStatus$.next('paused');
+      //   break;
+      //TODO signal
       case 'play':
-        this.playerStatus$.next('play');
+        this.playerStatusSignal.set('play');
         break;
       case 'playing':
-        this.playerStatus$.next('playing');
+        this.playerStatusSignal.set('playing');
         break;
       case 'ended':
-        this.playerStatus$.next('ended');
+        this.playerStatusSignal.set('ended');
         break;
       default:
-        this.playerStatus$.next('paused');
+        this.playerStatusSignal.set('paused');
         break;
     }
   };
@@ -115,7 +155,9 @@ export class MultimediaService {
     //TODO currentTime ---> (x)
     //TODO (currentTime * 100) / duration
     let percentage = (currentTime * 100) / duration;
-    this.playerPercentage$.next(percentage);
+    // this.playerPercentage$.next(percentage);
+    //TODO signal
+    this.playerPercentageSignal.set(percentage);
   }
 
   //TODO: Funciones publicas

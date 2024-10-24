@@ -1,10 +1,12 @@
 import {
   Component,
   DestroyRef,
+  effect,
   ElementRef,
   inject,
   OnDestroy,
   OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
@@ -41,6 +43,7 @@ export class MediaPlayerComponent implements OnInit {
   // listaObserver$: Array<Subscription> = [];
 
   state: string = 'paused';
+  // state = signal('paused');
   //Progreso barra
   @ViewChild('progressBar') progressBar: ElementRef = new ElementRef('');
 
@@ -56,6 +59,13 @@ export class MediaPlayerComponent implements OnInit {
   //   //   .pipe(takeUntilDestroyed())
   //   //   .subscribe((status) => (this.state = status));
   // }
+
+  constructor() {
+    effect(() => {
+      const state = this.multimediaService.playerStatusSignal();
+      this.state = state;
+    });
+  }
 
   //TODO: primero que se construye
   ngOnInit(): void {
@@ -84,20 +94,23 @@ export class MediaPlayerComponent implements OnInit {
     //   console.log('Reproducir cancion', responseOk);
     //   this.mockCover = responseOk;
     // });
-
     //Inicializamos el boton
     //TODO forma anterior y rudimentaria
     // const observer1$ = this.multimediaService.playerStatus$.subscribe(
     //   (status) => (this.state = status)
     // );
-
     //TODO forma nueva
-    this.multimediaService.playerStatus$
-      //TODO Con lo que existe
-      // .pipe(takeUntilDestroyed(this.destryRef))
-      //TODO Con el que creamos
-      .pipe(this.destroyCustom())
-      .subscribe((status) => (this.state = status));
+    // this.multimediaService.playerStatus$
+    //   //TODO Con lo que existe
+    //   // .pipe(takeUntilDestroyed(this.destryRef))
+    //   //TODO Con el que creamos
+    //   .pipe(this.destroyCustom())
+    //   .subscribe((status) => (this.state = status));
+    //TODO Signal
+    // effect(() => {
+    //   const state = this.multimediaService.playerStatusSignal();
+    //   this.state = state;
+    // });
   }
 
   //TODO: ultmo que se construye

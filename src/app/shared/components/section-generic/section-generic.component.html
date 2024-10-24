@@ -9,6 +9,10 @@
       <li *ngFor="let track of dataTracks">
         <!-- {{ track.name }} -->
         <!-- {{ track | json }} -->
+        <!-- Si se necesita se pasan asi o de la forma nueva Required imput -->
+        <!-- <app-card-player [track]="track" [mode]="mode" /> -->
+        <!-- Forma nueva Required Imput -->
+        <!-- si no pongo los datos se rome -->
         <app-card-player [track]="track" [mode]="mode" />
       </li>
     </ul>
