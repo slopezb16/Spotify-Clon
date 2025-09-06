@@ -1,0 +1,7 @@
+1.Abrir la Consola
+2.Ejecutar -> npm install
+3.Iniciar la Angular -> ng s
+4.Revisar la URL -> http://localhost:4200/
+5.Parar la API -> CTRL + C
+6.Inicar Pruebas o Test -> ng test
+7.Posible URL -> http://localhost:9876/?id=10904963
