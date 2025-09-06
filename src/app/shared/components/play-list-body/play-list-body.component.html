@@ -34,15 +34,26 @@
 <!--template del cover-->
 <ng-template #coverSection let-track="track">
   <div class="cover-section">
-    <img
-      appImgBroken
-      class="cover-track"
-      [src]="track.cover"
-      [alt]="track.name"
-    />
+    <div class="cover-container" (click)="sendPlay(track)">
+      <img
+        appImgBroken
+        class="cover-track"
+        [src]="track.cover"
+        [alt]="track.name"
+      />
+      <!-- Overlay con ícono Play -->
+      <div class="overlay">
+        <i class="uil uil-play"></i>
+      </div>
+    </div>
     <div class="cover-info">
       <div class="name-track">{{ track.name }}</div>
       <div class="name-track-details">{{ track.artist.name }}</div>
+
+      <!-- 👇 botón play -->
+      <button class="play-btn" (click)="sendPlay(track)">
+        <i class="uil uil-play"></i>
+      </button>
     </div>
   </div>
 </ng-template>
