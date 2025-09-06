@@ -11,8 +11,7 @@ import { DemoStandaloneComponent } from './shared/demo-standalone/demo-standalon
   declarations: [
     //TODO: Declaraciones, componentes, directivas, pipes
     // RegisterPageComponent, //TODO No hay necesidad de declararlo RegisterPageComponent dado que ya es un standalone
-  
-    DemoStandaloneComponent
+    // DemoStandaloneComponent
   ],
   imports: [
     //TODO: Solo se importan otros modules
