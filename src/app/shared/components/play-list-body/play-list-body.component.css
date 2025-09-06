@@ -54,3 +54,46 @@
     font-size: 80%;
     opacity: .7;
 }
+
+/* nuevo play img */
+.cover-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cover-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Overlay transparente */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Ícono Play */
+.overlay i {
+  font-size: 2.2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 12px;
+}
+
+/* Hover efecto */
+.cover-container:hover .overlay {
+  opacity: 1;
+}
+
